@@ -1,7 +1,7 @@
 # Raíz: compone módulos mínimos para el MVP (AWS Optimized)
 
 module "s3" {
-  source  = "../modules/s3"
+  source  = "../../modules/s3"
   project = var.project
   env     = var.env
   region  = var.region
@@ -9,20 +9,20 @@ module "s3" {
 }
 
 module "glue" {
-  source      = "../modules/glue"
-  project     = var.project
-  env         = var.env
-  region      = var.region
-  domain      = var.domain
-  s3_bronze   = module.s3.bronze_bucket
-  s3_silver   = module.s3.silver_bucket
-  s3_gold     = module.s3.gold_bucket
+  source        = "../../modules/glue"
+  project       = var.project
+  env           = var.env
+  region        = var.region
+  domain        = var.domain
+  s3_bronze     = module.s3.bronze_bucket
+  s3_silver     = module.s3.silver_bucket
+  s3_gold       = module.s3.gold_bucket
   s3_quarantine = module.s3.quarantine_bucket
-  tags        = var.tags
+  tags          = var.tags
 }
 
 module "dq" {
-  source        = "../modules/dq"
+  source        = "../../modules/dq"
   project       = var.project
   env           = var.env
   region        = var.region
@@ -32,17 +32,17 @@ module "dq" {
 }
 
 module "athena" {
-  source      = "../modules/athena"
-  project     = var.project
-  env         = var.env
-  region      = var.region
-  s3_output   = module.s3.athena_output
-  tags        = var.tags
+  source    = "../../modules/athena"
+  project   = var.project
+  env       = var.env
+  region    = var.region
+  s3_output = module.s3.athena_output
+  tags      = var.tags
 }
 
 # QuickSight se deja como referencia (requiere setup manual/identity)
 module "quicksight" {
-  source  = "../modules/quicksight"
+  source  = "../../modules/quicksight"
   project = var.project
   env     = var.env
   region  = var.region

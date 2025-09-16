@@ -1,9 +1,9 @@
 terraform {
   backend "s3" {
-    bucket         = "<REPLACE_ME_BACKEND_BUCKET>"
-    key            = "state/datalive-aws-optimized-PORTAFOLIO-prod.tfstate"
+    bucket         = "dalive-tfstate-prod-us-east-1"
+    key            = "state/datalive-mvp-portafolio-prod.tfstate"
     region         = "us-east-1"
-    dynamodb_table = "<REPLACE_ME_DDB_LOCK>"
+    dynamodb_table = "dalive-tflock-prod-us-east-1"
     encrypt        = true
   }
 }
